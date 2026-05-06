@@ -2,9 +2,7 @@
 
 ## 🔍 Project Overview
 
-This project analyzes user interaction data from a mobile application to understand user behavior, session patterns, and engagement drivers.
-
-The analysis includes **data cleaning, exploratory data analysis (EDA), and statistical hypothesis testing** to evaluate whether features like subscription status and push notifications impact user engagement.
+This project analyzes user interaction data from a mobile application to understand user behavior and engagement patterns.
 
 ---
 
@@ -12,170 +10,163 @@ The analysis includes **data cleaning, exploratory data analysis (EDA), and stat
 
 * Clean and preprocess raw dataset
 * Perform exploratory data analysis (EDA)
-* Identify user behavior patterns
-* Test the impact of:
-
-  * Subscription status
-  * Push notifications
-    on session duration
+* Test impact of subscription and push notifications
 
 ---
 
 ## 🗂️ Dataset
 
-* **Name:** Mobile App Interactions Dataset
-* **File:** `mobile_app_interactions_csv.csv`
-* **Description:**
-  Contains user session data including:
+Dataset includes:
 
-  * User ID
-  * Session ID
-  * Device OS
-  * Event Type (click, scroll, swipe, etc.)
-  * Session Duration
-  * Subscription Status
-  * Push Notification Preference
-  * User Age
+* User ID, Session ID
+* Device OS
+* Event Type
+* Session Duration
+* Subscription Status
+* Push Notification Status
 
 ---
 
-## 🛠️ Tools & Technologies
+# 🧹 Data Cleaning & Preparation
 
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* SciPy
+## 🔹 Initial Data Inspection
 
----
+### Dataset Preview (Before Cleaning)
 
-## 🧹 Data Cleaning & Preprocessing
+![Dataset Preview](https://github.com/payaldadhwal/Mobile_AppUser_Interaction_Analysis/blob/main/images/head().png
+)
 
-* Removed unnecessary column: `Unnamed: 9`
-* Handled missing values:
-
-  * Dropped critical null rows
-  * Filled categorical values with `"Unknown"`
-  * Imputed `user_age` with median
-  * Filled boolean values with `False`
-* Standardized categorical columns:
-
-  * Cleaned `device_os` (android / ios / unknown)
-  * Cleaned `event_type` (click, scroll, tap, etc.)
-* Removed outliers:
-
-  * Session duration ≥ 10,000 seconds
+👉 Shows raw, uncleaned dataset structure
 
 ---
 
-## 📊 Exploratory Data Analysis (EDA)
+### Data Information
 
-### 🔹 Session Duration Distribution
+![Data Info](https://github.com/payaldadhwal/Mobile_AppUser_Interaction_Analysis/blob/main/images/df.info.png
+)
 
-* Average session duration ≈ **30 minutes**
-* High variability observed
-* Presence of **power users** with very high engagement
-
-### 🔹 Event Type Analysis
-
-* Most common interactions:
-
-  * Click
-  * Scroll
-  * Share
-* Slightly higher engagement in:
-
-  * Scroll
-  * Zoom
+👉 Displays column types and non-null counts
 
 ---
 
-### 🔹 Feature Impact Analysis
+## 🔹 Handling Missing Values
 
-* Compared session duration across:
+### Missing Values Check (After Cleaning)
 
-  * Subscription status
-  * Push notification settings
+![Missing Values](https://github.com/payaldadhwal/Mobile_AppUser_Interaction_Analysis/blob/main/images/df_isnull.png
+)
 
-👉 No major visible differences found
-
----
-
-## 📈 Hypothesis Testing
-
-### Test 1: Subscription vs Session Duration
-
-* **p-value:** 0.485
-* ❌ No statistically significant impact
+👉 Confirms dataset has no null values after preprocessing
 
 ---
 
-### Test 2: Push Notifications vs Session Duration
+## 🔹 Data Cleaning Steps
 
-* **p-value:** 0.934
-* ❌ No statistically significant impact
-
----
-
-## 📌 Key Insights
-
-* User activity is dominated by **click, scroll, and share events**
-* Majority users are on **Android devices**
-* Average session duration is around **30 minutes**
-* **Power users** contribute to high engagement outliers
-* Subscription and push notifications do **not significantly influence session duration**
+* Removed unnecessary column (`Unnamed: 9`)
+* Handled missing values
+* Standardized categorical columns
+* Converted data types
 
 ---
 
-## 🧠 Conclusion
+# 📊 Exploratory Data Analysis (EDA)
 
-User engagement is not significantly affected by subscription plans or push notification settings.
+## 🔹 Session Duration Distribution
 
-### 🚀 Recommendations
+### Histogram
 
-To improve engagement:
+![Histogram](https://github.com/payaldadhwal/Mobile_AppUser_Interaction_Analysis/blob/main/images/hist.session.png
+)
 
-* Enhance **content quality**
-* Focus on **personalization**
-* Improve overall **user experience (UX)**
-
----
-
-## 📷 Project Screenshots
-
-
-* Dataset preview (`df.head()`)
-* Data info (`df.info()`)
-* Histogram & Boxplot
-* Event type bar chart
-* Hypothesis testing results
+👉 Shows distribution of session duration across users
 
 ---
 
-## 📁 Project Structure
+### Boxplot
+
+![Boxplot](https://github.com/payaldadhwal/Mobile_AppUser_Interaction_Analysis/blob/main/images/boxplot.png
+)
+
+👉 Highlights spread and presence of outliers (power users)
+
+---
+
+## 🔹 Key Insights from EDA
+
+* Average session duration ≈ 30 minutes
+* High variability in user engagement
+* Presence of power users
+
+---
+
+# 📈 Hypothesis Testing
+
+## 🔹 Test 1: Subscription vs Session Duration
+
+![Subscription Test](https://github.com/payaldadhwal/Mobile_AppUser_Interaction_Analysis/blob/main/images/ttest_sub.png
+)
+
+👉 Result: No statistically significant impact
+
+---
+
+## 🔹 Test 2: Push Notifications vs Session Duration
+
+![Push Test](https://github.com/payaldadhwal/Mobile_AppUser_Interaction_Analysis/blob/main/images/pushenabled.png)
+
+👉 Result: No statistically significant impact
+
+---
+
+# 📌 Key Findings
+
+* Click, Scroll, Share are dominant interactions
+* Android users form majority
+* Session duration is not affected by:
+
+  * Subscription
+  * Push notifications
+
+---
+
+# 🧠 Conclusion
+
+User engagement is driven more by:
+
+* Content quality
+* Personalization
+* User experience
+
+---
+
+# 📁 Project Structure
 
 ```
+Mobile_AppUser_Interaction_Analysis/
+│
+├── images/
+│   ├── head().png
+│   ├── df.info.png
+│   ├── df_isnull.png
+│   ├── hist.session.png
+│   ├── boxplot.png
+│   ├── ttest_sub.png
+│   ├── pushenabled.png
+
+│
+└── README.md
+
 ├── data/
 │   └── mobile_app_interactions_csv.csv
+│
 ├── notebook/
-│   └── analysis.ipynb
-├── images/
-│   └── (plots & screenshots)
+│   └── mobileuser_interaction.ipynb
+│
 ├── report/
 │   └── project_report.pdf
-└── README.md
-```
 
 ---
 
 ## 🙋‍♀️ Author
 
-**Payal Dadhwal**
-Aspiring Data Analyst
-
----
-
-## ⭐ If you found this project useful
-
-Give it a ⭐ on GitHub!
+Payal Dadhwal
